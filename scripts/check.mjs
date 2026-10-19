@@ -1,0 +1,2 @@
+import {readdirSync}from'node:fs';import {spawnSync}from'node:child_process';import path from'node:path';
+const files=['server.mjs'];function visit(dir){for(const entry of readdirSync(dir,{withFileTypes:true})){const file=path.join(dir,entry.name);if(entry.isDirectory())visit(file);else if(/\.m?js$/.test(file))files.push(file);}}visit('src');visit('tests');visit('scripts');for(const file of files){const r=spawnSync(process.execPath,['--check',file],{stdio:'inherit'});if(r.status!==0)process.exit(r.status||1);}console.log(`Syntax checked ${files.length} JavaScript files.`);

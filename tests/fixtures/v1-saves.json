@@ -1,0 +1,248 @@
+{
+  "start": {
+    "version": 1,
+    "eraId": "edo-nihonbashi",
+    "origin": "town",
+    "name": "旧版の花",
+    "index": 0,
+    "stats": {
+      "health": 65,
+      "money": 45,
+      "learning": 35,
+      "bonds": 55
+    },
+    "job": "家の手伝い",
+    "family": "家族と暮らす",
+    "log": [],
+    "unlocks": [],
+    "pending": null,
+    "finished": false
+  },
+  "pending": {
+    "version": 1,
+    "eraId": "edo-nihonbashi",
+    "origin": "farm",
+    "name": "旧版の葵",
+    "index": 3,
+    "stats": {
+      "health": 81,
+      "money": 24,
+      "learning": 47,
+      "bonds": 83
+    },
+    "job": "職人の弟子",
+    "family": "家族と暮らす",
+    "log": [
+      {
+        "age": 5,
+        "year": 1805,
+        "title": "路地の向こうの世界",
+        "choice": "家の手伝いをする",
+        "text": "小さな手でも、できる仕事がある。夕方、家族が笑ってくれた。",
+        "history": null
+      },
+      {
+        "age": 8,
+        "year": 1808,
+        "title": "手習いの誘い",
+        "choice": "時間を作って学ぶ",
+        "text": "紙と墨を大切に使い、自分の名前を書いた。",
+        "history": null
+      },
+      {
+        "age": 11,
+        "year": 1811,
+        "title": "祭りの日の双六",
+        "choice": "一緒に遊んでみる",
+        "text": "初めての双六。出目に一喜一憂する時間が、仲間との思い出になった。",
+        "history": null
+      },
+      {
+        "age": 14,
+        "year": 1814,
+        "title": "はじめての働き口",
+        "choice": "職人に弟子入りする",
+        "text": "道具の手入れから始める。手に職をつける道は長い。",
+        "history": null
+      }
+    ],
+    "unlocks": [
+      "暮らし",
+      "手習い",
+      "双六",
+      "職人"
+    ],
+    "pending": 1,
+    "finished": false
+  },
+  "finished": {
+    "version": 1,
+    "eraId": "edo-nihonbashi",
+    "origin": "farm",
+    "name": "旧版の葵",
+    "index": 18,
+    "stats": {
+      "health": 95,
+      "money": 8,
+      "learning": 83,
+      "bonds": 100
+    },
+    "job": "独り立ちした働き手",
+    "family": "伴侶と暮らす",
+    "log": [
+      {
+        "age": 5,
+        "year": 1805,
+        "title": "路地の向こうの世界",
+        "choice": "家の手伝いをする",
+        "text": "小さな手でも、できる仕事がある。夕方、家族が笑ってくれた。",
+        "history": null
+      },
+      {
+        "age": 8,
+        "year": 1808,
+        "title": "手習いの誘い",
+        "choice": "時間を作って学ぶ",
+        "text": "紙と墨を大切に使い、自分の名前を書いた。",
+        "history": null
+      },
+      {
+        "age": 11,
+        "year": 1811,
+        "title": "祭りの日の双六",
+        "choice": "一緒に遊んでみる",
+        "text": "初めての双六。出目に一喜一憂する時間が、仲間との思い出になった。",
+        "history": null
+      },
+      {
+        "age": 14,
+        "year": 1814,
+        "title": "はじめての働き口",
+        "choice": "商家で働く",
+        "text": "帳面、挨拶、品物の扱い。店の一日が始まった。",
+        "history": null
+      },
+      {
+        "age": 17,
+        "year": 1817,
+        "title": "うまくいかない一日",
+        "choice": "先輩に相談する",
+        "text": "同じ失敗をしたことがある、と先輩は話してくれた。",
+        "history": null
+      },
+      {
+        "age": 20,
+        "year": 1820,
+        "title": "夜の食卓",
+        "choice": "菜と豆腐を添えて食べる",
+        "text": "いつもより丁寧な夕餉。からだが温まる。",
+        "history": null
+      },
+      {
+        "age": 24,
+        "year": 1824,
+        "title": "誰と暮らしていくか",
+        "choice": "伴侶と暮らしを築く",
+        "text": "相談しながら、新しい暮らしの支度を始めた。",
+        "history": null
+      },
+      {
+        "age": 28,
+        "year": 1828,
+        "title": "仕事を広げる機会",
+        "choice": "元手を出して挑戦する",
+        "text": "思い切った一歩。仕入れや道具に蓄えを使った。",
+        "history": null
+      },
+      {
+        "age": 33,
+        "year": 1833,
+        "title": "米の値を見つめる",
+        "choice": "蓄えで食料を確保する",
+        "text": "蓄えを切り崩し、まずは食卓を守った。",
+        "history": 1833
+      },
+      {
+        "age": 36,
+        "year": 1836,
+        "title": "暮らしを立て直す",
+        "choice": "少しずつ蓄える",
+        "text": "小さな積み重ねが、いつかの備えになる。",
+        "history": null
+      },
+      {
+        "age": 41,
+        "year": 1841,
+        "title": "倹約の風",
+        "choice": "支出を見直す",
+        "text": "帳面を開き、必要なものを一つずつ考えた。",
+        "history": 1841
+      },
+      {
+        "age": 44,
+        "year": 1844,
+        "title": "休むことも暮らし",
+        "choice": "思い切って養生する",
+        "text": "頼める仕事は人に頼み、静かな時間を過ごした。",
+        "history": null
+      },
+      {
+        "age": 47,
+        "year": 1847,
+        "title": "次の手に渡すもの",
+        "choice": "技をゆっくり教える",
+        "text": "見せて、一緒にやってみる。自分の技が誰かの手に移っていく。",
+        "history": null
+      },
+      {
+        "age": 50,
+        "year": 1850,
+        "title": "川辺のひととき",
+        "choice": "なじみと散歩する",
+        "text": "たわいのない話が、長く心に残った。",
+        "history": null
+      },
+      {
+        "age": 53,
+        "year": 1853,
+        "title": "海の向こうからの知らせ",
+        "choice": "聞いた話を確かめる",
+        "text": "いくつもの話を比べ、わからないことはわからないまま記した。",
+        "history": 1853
+      },
+      {
+        "age": 55,
+        "year": 1855,
+        "title": "大きな揺れのあとで",
+        "choice": "まず家の人の安全を確かめる",
+        "text": "声をかけ合い、休める場所を探した。",
+        "history": 1855
+      },
+      {
+        "age": 58,
+        "year": 1858,
+        "title": "また灯る明かり",
+        "choice": "仕事の再出発を支える",
+        "text": "長く働いた経験が、誰かの役に立った。",
+        "history": null
+      },
+      {
+        "age": 60,
+        "year": 1860,
+        "title": "あなたが残したもの",
+        "choice": "「困ったときは支え合おう」",
+        "text": "一人では越えられなかった日々を思い返し、感謝を伝えた。",
+        "history": null
+      }
+    ],
+    "unlocks": [
+      "暮らし",
+      "手習い",
+      "双六",
+      "商い",
+      "食卓"
+    ],
+    "pending": null,
+    "finished": true
+  }
+}
