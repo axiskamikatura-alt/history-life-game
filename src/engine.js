@@ -3,6 +3,7 @@ import {createLife,updatePeople,applyLifeChoice,conditionMet,validLife} from './
 import {skipChallenge,validChallenges} from './challenge.js';
 import {createBudget,recordPeriod,recordOneOff,validBudget} from './economy.js';
 import {diaryEntry,validDiary} from './diary.js';
+import {createQuiz,validQuiz} from './quiz.js';
 export {SAVE_KEY,COLLECTION_KEY} from './storage.js';
 export const clamp=n=>Math.max(0,Math.min(100,n));
 export function createGame(origin,name='',options={}){
@@ -10,7 +11,7 @@ export function createGame(origin,name='',options={}){
  const seed=options.seed??(Date.now()^Math.floor(Math.random()*4294967296))>>>0;
  const life=createLife(origin,seed);
  if(options.speed&&['slow','standard','fast'].includes(options.speed))life.speed=options.speed;
- return {version:2,eraId:era.id,origin,name:name.trim().slice(0,16)||'あなた',index:0,stats:{...era.origins[origin].stats,happiness:55},job:'家の手伝い',family:'家族と暮らす',log:[],unlocks:[],pending:null,finished:false,challengeRuns:{},budget:createBudget(origin),diary:[],...life};
+ return {version:2,eraId:era.id,origin,name:name.trim().slice(0,16)||'あなた',index:0,stats:{...era.origins[origin].stats,happiness:55},job:'家の手伝い',family:'家族と暮らす',log:[],unlocks:[],pending:null,finished:false,challengeRuns:{},budget:createBudget(origin),diary:[],quiz:createQuiz(),...life};
 }
 export function choose(state,index){
  if(state.finished||state.pending!==null)return state;
@@ -34,9 +35,9 @@ export function advance(state){
 }
 export function ending(state){const labels={health:['暮らしを慈しむ人','からだと日々を大切にした、その歩み。'],money:['暮らしを築く人','働き、工夫し、明日への備えを重ねた、その歩み。'],learning:['学びをつなぐ人','知恵や技を磨き、次の誰かへ手渡した、その歩み。'],bonds:['人の輪に生きる人','誰かを支え、誰かに支えられた、その歩み。'],happiness:['日々に喜びを見つける人','自分にとって大切な時間を積み重ねた、その歩み。']};return labels[Object.keys(labels).sort((a,b)=>state.stats[b]-state.stats[a])[0]];}
 function validBase(s,list=events){return !!s&&s.eraId===era.id&&Object.hasOwn(era.origins,s.origin)&&typeof s.name==='string'&&s.name.length<=16&&Number.isInteger(s.index)&&s.index>=0&&s.index<=list.length&&typeof s.finished==='boolean'&&s.finished===(s.index===list.length)&&Array.isArray(s.log)&&s.log.length===s.index+(s.pending!==null?1:0)&&s.log.every(x=>x&&typeof x.title==='string'&&typeof x.choice==='string'&&typeof x.text==='string'&&Number.isInteger(x.age)&&Number.isInteger(x.year))&&Array.isArray(s.unlocks)&&s.unlocks.every(x=>typeof x==='string')&&typeof s.job==='string'&&typeof s.family==='string'&&s.stats&&['health','money','learning','bonds'].every(k=>Number.isFinite(s.stats[k])&&s.stats[k]>=0&&s.stats[k]<=100)&&(s.pending===null||Number.isInteger(s.pending)&&!!list[s.index]?.choices[s.pending]);}
-export function validSave(s){try{return Boolean(s?.version===2&&validBase(s)&&Number.isFinite(s.stats.happiness)&&s.stats.happiness>=0&&s.stats.happiness<=100&&validLife(s)&&validChallenges(s)&&validBudget(s)&&validDiary(s)&&s.log.every((l,i)=>l.eventId===events[i]?.id));}catch{return false;}}
+export function validSave(s){try{return Boolean(s?.version===2&&validBase(s)&&Number.isFinite(s.stats.happiness)&&s.stats.happiness>=0&&s.stats.happiness<=100&&validLife(s)&&validChallenges(s)&&validBudget(s)&&validDiary(s)&&validQuiz(s)&&s.log.every((l,i)=>l.eventId===events[i]?.id&&l.age===events[i].age&&l.year===era.birth+events[i].age));}catch{return false;}}
 export function migrateSave(s){
- if(s?.version===2){const next={...s,challengeRuns:s.challengeRuns??{},diary:s.diary??[],budget:s.budget??{...createBudget(s.origin),legacy:true}};return next;}
+ if(s?.version===2){const next={...s,quiz:s.quiz===undefined?createQuiz():s.quiz,challengeRuns:s.challengeRuns??{},diary:s.diary??[],budget:s.budget??{...createBudget(s.origin),legacy:true}};return next;}
  const legacyEvents=events.filter(e=>![6,15,22,31,39,52].includes(e.age));
  if(s?.version!==1||!validBase(s,legacyEvents))return null;
  const next=createGame(s.origin,s.name,{seed:1800});

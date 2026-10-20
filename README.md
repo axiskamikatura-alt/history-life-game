@@ -1,4 +1,4 @@
-# ひとよ ― もしも江戸に生まれたら Ver.2.0
+# ひとよ ― もしも江戸に生まれたら Ver.2.0 学習版
 
 1800年生まれの一人が、江戸・日本橋界隈と近郊を舞台に60歳まで暮らす人生シミュレーション。Windows PC、スマートフォン、iPad、Androidタブレット向けのレスポンシブなブラウザアプリです。江戸編のみを実装しています。
 
@@ -13,6 +13,23 @@
 遊んでいる間は黒い画面を閉じないでください。以前と同じブラウザ・アドレスなら旧版の保存を引き継ぎます。ブラウザのデータは削除しないでください。旧版のフォルダとZIPも残してください。Windows実機での起動テストは未実施です。
 
 開発環境では `cd /workspace/history-life-game` → `npm start`。アプリの追加パッケージは不要。別ポートなら `PORT=3001 npm start`。スマホやタブレットの `localhost` はその端末自身なので、Windows上のサーバーをそのまま開くアドレスにはなりません。スマホ実機での配信・公開方法は別途承認後に検討します。今回は外部公開を行っていません。
+
+## 第6段階：歴史の問題と復習
+
+上部メニューの「歴史の問題」、人生の選択結果の「この年代までの歴史に挑戦」、人生の総括から開けます。
+
+- 江戸後期の自主作成20問。中学歴史の語句・社会の変化・史実の読み方を題材にしています。
+- 選択が済んだ人生ログの年までを出題。次の章へ移動しただけでは、新しい年代を解放しません。
+- 1回最大3問。「まだ解いていない問題」「間違えた問題を復習」「学んだ範囲をもう一度」。
+- 回答後に正解、誤答への補足、理由、人生とのつながりを表示。自動では進みません。
+- 回答前・解説表示後・回の振り返りから再開。人生へ戻っても、学習の続きは保存します。
+- 任意の学習で、人生の健康・財産・幸福度や人物関係を増減しません。新しい人生では学習記録も新しくなります。
+- 最後の回答が誤答の問題は復習待ち。正解すると復習待ちから外れます。数字は学習記録であり、理解度を診断するテストではありません。
+- 歴史の学習を個人史のテキストにも出力します。完走後も全20問に取り組めます。
+
+保存バージョン・キーはv2を継続。古いv2のquiz未定義は空の記録へ移行し、人生と家計を保持します。v1の移行も維持。不正な学習記録を黙って上書きしません。詳しくは `docs/STAGE6_PLAN.md`。
+
+問題は教科書・入試問題の複製ではなく、検定・教材監修済みともしていません。個別の出典照合、実際の中学生での理解度・興味の評価は今後の確認事項です。
 
 ## 内容
 
@@ -38,6 +55,7 @@
 
 ## 構成
 
+- `src/data/quiz.js`, `src/quiz.js`, `src/quiz-view.js`：時代別の問題、出題・採点・復習、画面。
 - `src/data/registry.js`：時代IDとデータセットの登録。
 - `src/data/era.js`, `events.js`, `people.js`：時代設定、分岐、出生環境・人物。
 - `src/data/history.js`, `collection.js`, `meals.js`：歴史、図鑑、食文化。
@@ -63,13 +81,14 @@ PLAYWRIGHT_PACKAGE=/tmp/hitoyo-browser/package.json node tests/browser.mjs
 PLAYWRIGHT_PACKAGE=/tmp/hitoyo-browser/package.json node tests/v2-browser.mjs
 PLAYWRIGHT_PACKAGE=/tmp/hitoyo-browser/package.json node tests/gameplay-browser.mjs
 PLAYWRIGHT_PACKAGE=/tmp/hitoyo-browser/package.json node tests/finance-browser.mjs
+PLAYWRIGHT_PACKAGE=/tmp/hitoyo-browser/package.json node tests/quiz-browser.mjs
 ```
 
 上の環境変数指定はクラウドのBash向け。`PLAYWRIGHT_PACKAGE` はPlaywrightが導入済みのpackage.jsonの絶対パス。実機のOSやSafariは検証環境にないため、Chromiumでの画面幅・タッチ入力検証と区別します。詳細は `docs/VALIDATION.md`。
 
 ## バックアップと段階保存
 
-旧版は `/workspace/history-life-backups/hitoyo-v1-before-v2.zip` にGit情報も含めて保存。SHA-256 manifestで内容を照合済み。第1〜第5段階のスナップショットは同ディレクトリの `v2-stage*.zip`。旧版の配布用 `/workspace/hitoyo-edo-windows.zip` も残します。Ver.2は別名で配布し、旧ZIPを上書きしません。
+旧版は `/workspace/history-life-backups/hitoyo-v1-before-v2.zip` にGit情報も含めて保存。SHA-256 manifestで内容を照合済み。第1〜第5段階のスナップショットは同ディレクトリの `v2-stage*.zip`。旧版の配布用 `/workspace/hitoyo-edo-windows.zip` も残します。Ver.2は別名で配布し、旧ZIPを上書きしません。第6段階の学習版は `/workspace/hitoyo-edo-v2-learning-windows.zip`。配布スクリプトはreleases内の既存ZIPを新しいZIPに重複して入れません。
 
 設計と段階ごとの内容は `docs/V2_PLAN.md`。公開・外部サービス接続・課金機能はユーザーの事前承認なしに実施しません。
 
